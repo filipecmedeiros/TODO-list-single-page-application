@@ -257,4 +257,3 @@ function handleDragEnd(e) {
     col.classList.remove('opaque');
   });
 }
-//# sourceURL=pen.js
