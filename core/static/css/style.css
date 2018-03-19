@@ -141,7 +141,6 @@ div.row {
 
 label {
   display: block;
-  font-size: 1.2em;
 }
 
 input,
@@ -226,9 +225,6 @@ textarea {
 }
 
 .todo-item .todo-description {
-  line-height: 1.2em;
-  font-size: 1em;
-  width: 85%;
 }
 
 .todo-item.done .todo-description {
@@ -239,7 +235,7 @@ textarea {
   color: white;
   margin: 0 -20px;
   padding: 15px 20px;
-  font-size: 1.2em;
+  
   line-height: 2em;
   font-weight: bold;
   cursor: pointer;
@@ -259,7 +255,7 @@ textarea {
 
 .todo-item .todo-priority {
   -webkit-appearance: none;
-  font-size: 1em;
+  
   text-shadow: none;
   line-height: 1.2em;
   border-radius: 3px;
