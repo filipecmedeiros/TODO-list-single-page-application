@@ -75,7 +75,7 @@
                 <li>
                   {% if task.todo == todo %}
                     <div class="todo-description">
-                      <label style="float:left; margin-right:30px;"><input type="checkbox" value="{{task.done}}" style="min-width:0px;"> {{task.name}} </label>
+                      <label style="float:left; margin-right:30px;"><input type="checkbox" value="" {% if task.done %} checked {% endif %} style="min-width:0px;"> {{task.name}} </label>
                       <p>{{task.deadline}}</p>
                     </div>
                   {% endif %}
