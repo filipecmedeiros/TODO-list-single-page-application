@@ -9,6 +9,7 @@ class ToDoForm (forms.Form):
 
 class TaskForm (forms.Form):
 	name = forms.CharField (label='Title')
+	slug = forms.SlugField (label='Id')
 	todo = forms.ModelChoiceField (label='List', queryset=ToDo.objects.all())
 	deadline = forms.DateTimeField(label='Deadline')
 	done = forms.BooleanField(label='Done', required=False)

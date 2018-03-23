@@ -45,14 +45,16 @@
                 <li>
                   {% if task.todo == todo %}
                     <div class="todo-description">
-                      <label style="float:left; margin-right:30px;"><input type="checkbox" value="" {% if task.done %} checked {% endif %} style="min-width:0px;"> {{task.name}} </label>
-                      <p>{{task.deadline}}</p>
+                      <label style="float:left; margin-right:30px;">
+                        <input type="checkbox" value="" {% if task.done %} checked {% endif %} style="min-width:0px;"/> {{task.name}} </label>
+                      <p style="float:left;">{{task.deadline}}</p>
+                      <a href="{% url 'TaskDelete' slug=task.slug %}" class="fa fa-trash" style="color:#000; text-decoration:none; float:right; margin-top:5px;"></a>
                     </div>
                   {% endif %}
                 </li>
               {% endfor %}
               <button type="submit" data-toggle="modal" data-target="#myModal2" class="btn btn-default" style="margin-top:15px;">Add Task</button>
-              <span class="todo-priority"> Do it! </span>
+              <span type="submit" class="todo-priority"> Do it! </span>
             </ul>
             <br/>
           </div>
