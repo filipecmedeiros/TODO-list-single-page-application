@@ -475,3 +475,8 @@ span.action {
     transform: rotate(360deg);
   }
 }
+
+.modal-body {
+  position:relative;
+  padding: 0px;
+}

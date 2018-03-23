@@ -22,7 +22,7 @@ class ToDo (models.Model):
 class Task (models.Model):
 
 	name = models.CharField('Tarefa', max_length=200)
-	done = models.BooleanField('Feito', default=False)
+	done = models.BooleanField('Feito', default=False, blank=True)
 	todo = models.ForeignKey('core.ToDo', on_delete=models.CASCADE, verbose_name='A fazer')
 	deadline = models.DateTimeField('Data limite')
 
