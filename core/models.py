@@ -2,7 +2,7 @@ from django.db import models
 from django.urls import reverse
 
 # Create your models here.
-class ToDo (models.Model):
+class Todo (models.Model):
 	
 	name = models.CharField('List', max_length=200)
 	slug = models.SlugField('Id', max_length=200, unique=True)

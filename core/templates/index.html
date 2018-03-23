@@ -37,7 +37,7 @@
 
             <h3 class="todo-title">  
               <span class="title">{{ todo }} </span>
-              <a href="{% url 'ToDoDelete' slug=todo.slug %}" class="fa fa-trash pull-right" style="color:#fff; text-decoration:none;"></a>
+              <a href="{% url 'todo_delete' slug=todo.slug %}" class="fa fa-trash pull-right" style="color:#fff; text-decoration:none;"></a>
               <a href="" class="fa fa-pencil pull-right" data-toggle="modal" data-target="#myModal" style="color:#fff; text-decoration:none;"></a>
             </h3>
             <ul style="padding-left:0px;">
@@ -48,7 +48,7 @@
                       <label style="float:left; margin-right:30px;">
                         <input type="checkbox" value="" {% if task.done %} checked {% endif %} style="min-width:0px;"/> {{task.name}} </label>
                       <p style="float:left;">{{task.deadline}}</p>
-                      <a href="{% url 'TaskDelete' slug=task.slug %}" class="fa fa-trash" style="color:#000; text-decoration:none; float:right; margin-top:5px;"></a>
+                      <a href="{% url 'task_delete' slug=task.slug %}" class="fa fa-trash" style="color:#000; text-decoration:none; float:right; margin-top:5px;"></a>
                     </div>
                   {% endif %}
                 </li>
@@ -159,7 +159,7 @@
             </div>
 
             <div class="icon-delete">
-              <a class="pad-15 material-icons md-36 md-light" href="{% url 'ToDoDelete' slug=list.slug %}">delete</a>
+              <a class="pad-15 material-icons md-36 md-light" href="{% url 'todo_delete' slug=list.slug %}">delete</a>
             </div>
             <div class="content">
               {{ list.name }}
