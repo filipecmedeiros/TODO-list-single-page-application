@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 {% load static %}
+{% load widget_tweaks %}
 <html lang="en" >
 
 <head>
   <meta charset="UTF-8">
   <title>TODO App</title>
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">  
+  <link rel="stylesheet" href="{% static 'css/style.css' %}">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
 </head>
 
 <body>
@@ -16,60 +23,24 @@
 <header class="page-title">
   <h1>  <i class="material-icons">view_list</i>
         TODO</h1>
-  <div class="tag"> An easy way to manage your work. <span class="caret">|</span></div>
+  <div class="tag"> An easy way to manage your work.</div>
 </header>
-
-<main role="main" class="main-wrap hidden">
-
-  <header role="heading" class="header">
-    <h1 class="app-header"> Add your task </h1>
-  </header>
-
-  <section class="main-content">
-    <section class="todo-form">
-
-      <form role="form" id="todoForm">
-        <div class="row">
-          <label for="title"> Title </label>
-          <input class="form-input" id="title" type="text" placeholder="Learn JavaScript" />
-        </div>
-
-        <div class="row">
-          <label for="description"> Description </label>
-          <textarea id="description" rows="4" cols="30" placeholder="Coz you already know Java"></textarea>
-        </div>
-
-        <div class="row">
-          <label for="priority"> Priority </label>
-          <select id="priority">
-            <option value="high">High</option>
-            <option value="med">Medium</option>
-            <option value="low">Low</option>
-          </select>
-        </div>
-
-        <div class="row submit-btn">
-          <input type="submit" class="primary-button" value="DO IT" />
-        </div>
-      </form>
-
-    </section>
-
-
-  </section>
-</main>
 
 <section class="todo-list-container">
   <div class="todo-in-progress">
-    <h2> Working tasks</h2>
+    <h2> Working Lists</h2>
     <ul ondragstart="" class="todo-list" id="target">
 
       {% for todo in todos %}
+      {% if not todo.done %}
         <li draggable="true" class="todo-item high">
           <div class="card">
 
             <h3 class="todo-title">  
-            <span class="title">{{ todo }} </span></h3>
+              <span class="title">{{ todo }} </span>
+              <a href="{% url 'ToDoDelete' slug=todo.slug %}" class="fa fa-trash pull-right" style="color:#fff; text-decoration:none;"></a>
+              <a href="" class="fa fa-pencil pull-right" style="color:#fff; text-decoration:none;"></a>
+            </h3>
             <ul style="padding-left:0px;">
               {% for task in tasks %}
                 <li>
@@ -81,59 +52,84 @@
                   {% endif %}
                 </li>
               {% endfor %}
+              <span class="todo-priority"> Do it! </span>
             </ul>
             <br/>
-            <span class="todo-priority"> High </span>
-
           </div>
 
         </li>
+      {% endif %}
       {% endfor %}
-
+      <li class="todo-item new">
+         <div class="card" data-toggle="modal" data-target="#myModal" >
+          
+           <h3 class="todo-title"> <span class="action">
+                     <i class="complete material-icons md-36 md-light">add_circle_outline</i>
+                   </span> 
+                   <span class="title">Add list</span></h3>
+         </div>
+ 
+       </li>
+       <li>
+       
+       </li>
     </ul>
+  </div>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Add list</h4>
+        </div>
+        <div class="modal-body">
+          {% csrf_token %}
+          {% for field in ToDoForm %}
+            <div class="form-group {% if field.errors %} has-errors {% endif %}">
+              <label for="{{field.auto_id }}" class="col-md-3 control-label">{{ field.label }}</label>
+              <div class="col-md-9">
+                {% render_field field class='form-control' %}
+                {% for error in field.errors %}
+                  <span class="help-block">{{error}}</span>
+                {% endfor %}
+              </div>
+            </div>
+          {% endfor %}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+      
+    </div>
   </div>
 
   <div class="todo-completed">
     <ul class="todo-list-completed">
-      <h2> Completed Tasks </h2>
-      <li class="todo-item high">
-        <div class="icon-check">
-          <i class="pad-15 material-icons md-36 md-light">check_circle</i>
-        </div>
+      <h2> Completed Lists </h2>
+      {% for list in todos %}
+        {% if list.done %}
+          <li class="todo-item high">
+            <div class="icon-check">
+              <i class="pad-15 material-icons md-36 md-light">check_circle</i>
+            </div>
 
-        <div class="icon-delete">
-          <i class="pad-15 material-icons md-36 md-light">delete</i>
-        </div>
-        <div class="content">
-          Learn React
-        </div>
-      </li>
-      <li class="todo-item medium">
-        <div class="icon-check">
-          <i class="pad-15 material-icons md-36 md-light">check_circle</i>
-        </div>
-        <div class="icon-delete">
-          <i class="pad-15 material-icons md-36 md-light">delete</i>
-        </div>
-        <div class="content">
-          Learn React
-        </div>
-      </li>
-      <li class="todo-item low">
-        <div class="icon-check">
-          <i class="pad-15 material-icons md-36 md-light">check_circle</i>
-        </div>
-
-        <div class="icon-delete">
-          <i class="pad-15 material-icons md-36 md-light">delete</i>
-        </div>
-        <div class="content">
-          Learn React
-        </div>
-      </li>
+            <div class="icon-delete">
+              <a class="pad-15 material-icons md-36 md-light" href="{% url 'ToDoDelete' slug=list.slug %}">delete</a>
+            </div>
+            <div class="content">
+              {{ list.name }}
+            </div>
+          </li>
+        {% endif %}
+      {% endfor %}
     </ul>
   </div>
 </section>
-  <script  src="{% static 'js/index.js' %}"></script>
+  <!--<script  src="{% static 'js/index.js' %}"></script>-->
 </body>
 </html>

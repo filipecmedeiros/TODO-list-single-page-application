@@ -1,10 +1,12 @@
 from django.db import models
+from django.urls import reverse
 
 # Create your models here.
 class ToDo (models.Model):
 	
 	name = models.CharField('Nome', max_length=200)
-	slug = models.SlugField('Identificador', max_length=200)
+	slug = models.SlugField('Identificador', max_length=200, unique=True)
+	done = models.BooleanField('Feito')
 
 	created = models.DateTimeField('Criado em', auto_now_add=True)
 	modified = models.DateTimeField('Modificado em', auto_now=True)
