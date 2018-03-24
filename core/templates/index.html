@@ -40,16 +40,18 @@
               <a href="{% url 'todo_delete' slug=todo.slug %}" class="fa fa-trash pull-right" style="color:#fff; text-decoration:none;"></a>
               {# <a href="{% url 'todo_update' slug=todo.slug %}" class="fa fa-pencil pull-right" style="color:#fff; text-decoration:none;"></a> #}
             </h3>
-            <ul style="padding-left:0px;">
+            <ul class="list-group list-group-horizontal">
               {% for task in tasks %}
                 <li>
                   {% if task.todo == todo %}
-                    <div class="todo-description">
-                      <label style="float:left; margin-right:30px;">
-                        <input type="checkbox" value="" {% if task.done %} checked {% endif %} style="min-width:0px;"/> {{task.name}} </label>
-                      <p style="float:left;">{{task.deadline}}</p>
-                      <a href="{% url 'task_delete' slug=task.slug %}" class="fa fa-trash" style="color:#000; text-decoration:none; float:right; margin-top:5px;"></a>
-                    </div>
+                    <li  class="list-group item">
+                      <div>
+                        <label>
+                          <input class="" type="checkbox" value="" {% if task.done %} checked {% endif %}/> {{task.name}} </label>
+                        <p style="display:inline-block;">{{task.deadline}}</p>
+                        <a href="{% url 'task_delete' slug=task.slug %}" class="fa fa-trash" style="color:#000; text-decoration:none; float:right;"></a>
+                      </div>
+                    </li>
                   {% endif %}
                 </li>
               {% endfor %}
