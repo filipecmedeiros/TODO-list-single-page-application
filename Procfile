@@ -1,1 +1,1 @@
-web: gunicorn TODO-lis-single-page-application.wsgi --log-file -
+web: gunicorn todolist-singlepage.wsgi --log-file -
