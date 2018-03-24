@@ -47,7 +47,7 @@ SECRET_KEY = '+_4%8qar^3k&jdh+dw5*^70nwflr^p_*p52nkn*_f7h6y6*5@2'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhitenoiseMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
