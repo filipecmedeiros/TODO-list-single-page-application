@@ -1,5 +1,6 @@
 venv/
 
 db.sqlite3
+core/__pycache__/
 
 todolist/local_settings.py

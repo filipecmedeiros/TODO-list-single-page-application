@@ -1,1 +1,1 @@
-web: python manage.py runserver 0.0.0.0:$PORT
+web: gunicorn TODO-lis-single-page-application.wsgi --log-file -
