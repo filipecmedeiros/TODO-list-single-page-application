@@ -1,5 +1,9 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from django.http import HttpResponseRedirect
+
+from django.urls import reverse_lazy
+from django.views import generic
+
 from .models import Todo, Task
 from .forms import TodoForm, TaskForm
 # Create your views here.
@@ -34,3 +38,17 @@ def task_delete (request, slug):
 	task = Task.objects.get(slug=slug)
 	task.delete()
 	return HttpResponseRedirect('/')
+
+class TodoUpdateView (generic.UpdateView):
+
+	model = Todo
+	template_name = 'todo_update.html'
+	fields = ['name', 'slug', 'done']
+	success_url = reverse_lazy('index')
+
+	def get_context_data(self, **kwargs):
+		context = super(TodoUpdateView, self).get_context_data(**kwargs)
+		context['todos'] = Todo.objects.all()
+		context['tasks'] = Task.objects.all()
+		context['Todo'] = get_object_or_404(Todo, slug=self.kwargs['slug'])
+		return context

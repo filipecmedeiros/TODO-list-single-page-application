@@ -1,30 +1,8 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load static %}
 {% load widget_tweaks %}
-<html lang="en" >
 
-<head>
-  <meta charset="UTF-8">
-  <title>TODO App</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
-  <link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-  <link rel="stylesheet" href="{% static 'css/style.css' %}">
-</head>
-
-<body>
-
-  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-  <link href='https://fonts.googleapis.com/css?family=Muli:300' rel='stylesheet' type='text/css'>
-
-<header class="page-title">
-  <h1>  <i class="material-icons">view_list</i>
-        TODO</h1>
-  <div class="tag"> An easy way to manage your work.</div>
-</header>
-
+{% block container %}
 <section class="todo-list-container">
   <div class="todo-in-progress">
     <h2> Working Lists</h2>
@@ -38,7 +16,7 @@
             <h3 class="todo-title">  
               <span class="title">{{ todo }} </span>
               <a href="{% url 'todo_delete' slug=todo.slug %}" class="fa fa-trash pull-right" style="color:#fff; text-decoration:none;"></a>
-              {# <a href="{% url 'todo_update' slug=todo.slug %}" class="fa fa-pencil pull-right" style="color:#fff; text-decoration:none;"></a> #}
+              <a href="{% url 'todo_update' slug=todo.slug %}" class="fa fa-pencil pull-right" style="color:#fff; text-decoration:none;"></a>
             </h3>
             <ul class="list-group list-group-horizontal">
               {% for task in tasks %}
@@ -172,9 +150,5 @@
     </ul>
   </div>
 </section>
-  <script  src="{% static 'js/index.js' %}"></script>
-  <script type="text/javascript">
-    $(".form_datetime").datetimepicker({format: 'yyyy-mm-dd hh:ii'});
-  </script>
-</body>
-</html>
+
+{% endblock %}

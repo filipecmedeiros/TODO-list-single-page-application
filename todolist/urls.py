@@ -21,6 +21,7 @@ from core import views
 urlpatterns = [
 	path('', views.index, name='index'),
 	path(r'todo_delete/<slug>/', views.todo_delete, name='todo_delete'),
+    path(r'todo_update/<slug>/', views.TodoUpdateView.as_view(), name='todo_update'),
     path(r'task_delete/<slug>/', views.task_delete, name='task_delete'),
     path('admin/', admin.site.urls),
 ]
