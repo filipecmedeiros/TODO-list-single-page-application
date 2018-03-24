@@ -22,9 +22,9 @@ PROJECT_ROOT = os.path.dirname(os.path.abspath(__file__))
 
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -130,7 +130,9 @@ DATABASES['default'].update(db_from_env)
 
 SECURE_PROXY_SSL_HEADER = ('HTTP_X_FOWARDED_PROTO', 'https')
 
-STATIC_ROOT = os.path.join(PROJECT_ROOT, 'staticfiles')
+ALLOWED_HOSTS = ['*']
+
+STATIC_ROOT = os.path.join( PROJECT_ROOT, 'staticfiles')
 
 try:
     from .local_settings import *
