@@ -24,10 +24,11 @@
                   {% if task.todo == todo %}
                     <li  class="list-group item">
                       <div>
-                        <label>
+                        <label style="display: inline-block; margin-right:15px;">
                           <input class="" type="checkbox" value="" {% if task.done %} checked {% endif %}/> {{task.name}} </label>
                         <p style="display:inline-block;">{{task.deadline}}</p>
-                        <a href="{% url 'task_delete' slug=task.slug %}" class="fa fa-trash" style="color:#000; text-decoration:none; float:right;"></a>
+                        <a href="{% url 'task_delete' slug=task.slug %}" class="fa fa-trash" style="color:#000; text-decoration:none; float:right; margin-left:5px;"></a>
+                        <a href="{% url 'task_update' slug=task.slug %}" class="fa fa-pencil" style="color:#000; text-decoration:none; float:right;"></a>
                       </div>
                     </li>
                   {% endif %}
@@ -74,7 +75,7 @@
               {% csrf_token %}
               {% for field in todo_form %}
                 <div class="{% if field.errors %} has-errors {% endif %}">
-                  <label for="{{field.auto_id }}" class="col-md-3 control-label">{{ field.label }}</label>
+                  <label for="{{field.auto_id }}" class="col-md-3 control-label" style="display: inline-block; margin-right: 15px;">{{ field.label }}</label>
                   <div class="col-md-9">
                     {% render_field field %}
                     {% for error in field.errors %}

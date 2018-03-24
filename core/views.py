@@ -48,7 +48,17 @@ class TodoUpdateView (generic.UpdateView):
 
 	def get_context_data(self, **kwargs):
 		context = super(TodoUpdateView, self).get_context_data(**kwargs)
-		context['todos'] = Todo.objects.all()
-		context['tasks'] = Task.objects.all()
 		context['Todo'] = get_object_or_404(Todo, slug=self.kwargs['slug'])
+		return context
+
+class TaskUpdateView (generic.UpdateView):
+
+	model = Task
+	template_name = 'task_update.html'
+	fields = ['name', 'slug', 'todo', 'deadline', 'done']
+	success_url = reverse_lazy('index')
+
+	def get_context_data(self, **kwargs):
+		context = super(TaskUpdateView, self).get_context_data(**kwargs)
+		context['Task'] = get_object_or_404(Task, slug=self.kwargs['slug'])
 		return context

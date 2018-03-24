@@ -481,11 +481,6 @@ span.action {
   padding: 0px;
 }
 
-label{
-  display: inline-block;
-  margin-right: 15px;
-}
-
 input{
   min-width: auto;
 }
