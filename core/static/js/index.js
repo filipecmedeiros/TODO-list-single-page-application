@@ -4,11 +4,11 @@
 var form = document.getElementById("todoForm");
 
 // to takeover its submit event.
-form.addEventListener("submit", function(event) {
-  event.preventDefault();
+// form.addEventListener("submit", function(event) {
+//   event.preventDefault();
 
-  submitTodo(event);
-});
+//   submitTodo(event);
+// });
 
 var todoItemTemplate = "<li draggable='true' class='todo-item {{priorityClass}}'><div class='card'><h3 class='todo-title '> <span class='action'><i class='icon-delete material-icons md-36 '>delete</i><i class='icon-checkbox-outline material-icons md-36 md-dark'>check_box_outline_blank</i><i class='icon-checkbox material-icons md-36 md-light'>check_box</i></span> <span class='title'>{{title}}</span> </h3> <p class='todo-description'> {{description}} </p> <span class='todo-priority {{priorityClass}}'> {{priority}} </span> </div></li>";
 

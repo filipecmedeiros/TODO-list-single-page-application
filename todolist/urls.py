@@ -20,6 +20,8 @@ from core import views
 
 urlpatterns = [
 	path('', views.index, name='index'),
+    path(r'todo_create/', views.TodoCreateView.as_view(), name='todo_create'),
+    path(r'task_create/', views.TaskCreateView.as_view(), name='task_create'),
 	path(r'todo_delete/<slug>/', views.todo_delete, name='todo_delete'),
     path(r'todo_update/<slug>/', views.TodoUpdateView.as_view(), name='todo_update'),
     path(r'task_delete/<slug>/', views.task_delete, name='task_delete'),
